@@ -1,0 +1,32 @@
+{
+  "schema_version": "1.0.0",
+  "packet_id": "LP-023-A",
+  "story_id": "LP-023",
+  "squad": "Landing-Stream",
+  "modules": ["03_marketing_site", "05_db_rls", "06_waitlist_emails"],
+  "sequence": ["05_db_rls", "03_marketing_site", "06_waitlist_emails"],
+  "definition_of_ready": ["Design snapshot attached", "DB table contract approved", "Event name approved"],
+  "tickets": [{
+    "ticket_id": "LP-023-1",
+    "type": "feature",
+    "title": "Add email capture form",
+    "definition_of_ready": ["Form component v0.3+ available"],
+    "acceptance_criteria_gherkin": [
+      "Given the landing page loads",
+      "When I enter a valid email and submit",
+      "Then a row exists in Supabase public.emails with status='pending' and a success toast shows"
+    ],
+    "interfaces": {
+      "db": "public.emails(email text, source text, created_at timestamptz)",
+      "event": "analytics.track('email_submit', {source:'landing'})"
+    },
+    "test_data": {"valid_email": "test@example.com", "invalid_email": "a@b"},
+    "nfr": ["LCP<=2.5s", "a11y labels"],
+    "flags": ["lp_email_form_v1"],
+    "mini_adr": "Use server action for form submit to reuse auth middleware.",
+    "done_means": ["PR merged", "Feature flag default off", "Playwright test recorded", "Dashboard panel linked"]
+  }],
+  "nfr": ["No PII in client logs"],
+  "flags": ["lp_email_form_v1"],
+  "optional": false
+}

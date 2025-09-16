@@ -1,0 +1,58 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://vibecoding.local/schemas/story_pack.schema.json",
+  "title": "Feature Shaper — Story Pack",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["story_id", "title", "intent"],
+  "properties": {
+    "schema_version": { "type": "string", "default": "1.0.0" },
+    "story_id": {
+      "type": "string",
+      "description": "Unique ID for the story, e.g., LP-023.",
+      "pattern": "^[A-Za-z]{2,6}-\\d{1,6}$"
+    },
+    "title": { "type": "string", "minLength": 3 },
+    "intent": { "type": "string", "minLength": 5 },
+    "constraints": { "type": "array", "items": { "type": "string" } },
+    "success_metrics": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "primary": { "type": "array", "items": { "$ref": "#/$defs/metric" } },
+        "guardrails": { "type": "array", "items": { "$ref": "#/$defs/metric" } }
+      }
+    },
+    "nfr": { "type": "array", "items": { "type": "string" } },
+    "risks": { "type": "array", "items": { "type": "string" } },
+    "references": { "type": "array", "items": { "type": "string" } },
+    "attachments": { "type": "array", "items": { "type": "string" } },
+    "experiment": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "flag": { "type": "string" },
+        "variants": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "site_id": { "type": "string" },
+    "tags": { "type": "array", "items": { "type": "string" } },
+    "created_at": { "type": "string", "format": "date-time" },
+    "created_by": { "type": "string" }
+  },
+  "$defs": {
+    "metric": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["metric", "target"],
+      "properties": {
+        "metric": { "type": "string" },
+        "target": {
+          "type": "string",
+          "description": "Human-readable target, e.g., '>=6%' or '<=2.5s'."
+        },
+        "note": { "type": "string" }
+      }
+    }
+  }
+}
