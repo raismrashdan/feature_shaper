@@ -1,0 +1,11 @@
+{
+      "schema_version": "1.0.0",
+      "story_id": "LP-023",
+      "title": "Collect emails on landing and send a welcome email",
+      "intent": "Add a waitlist box to the hero. Store email in Supabase. Send welcome if email service is configured.",
+      "constraints": ["Use next-supabase-starter", "Accessible (WCAG AA)", "No PII in client logs"],
+      "success_metrics": {
+        "primary": [{"metric": "submit_rate", "target": ">=6%"}],
+        "guardrails": [{"metric": "page_speed_lcp", "target": "<=2.5s"}]
+      }
+    }

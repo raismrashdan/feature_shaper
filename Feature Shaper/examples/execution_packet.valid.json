@@ -1,0 +1,17 @@
+{
+      "schema_version": "1.0.0",
+      "packet_id": "LP-023-A",
+      "story_id": "LP-023",
+      "squad": "Landing-Stream",
+      "modules": ["03_marketing_site", "05_db_rls", "06_waitlist_emails"],
+      "tickets": [{
+        "ticket_id": "LP-023-1",
+        "type": "feature",
+        "title": "Add email capture form",
+        "acceptance_criteria_gherkin": [
+          "Given the landing page loads",
+          "When I enter a valid email and submit",
+          "Then a row exists in Supabase public.emails with status='pending' and a success toast shows"
+        ]
+      }]
+    }

@@ -1,0 +1,15 @@
+{
+      "name": "feature-shaper-contracts",
+      "version": "1.0.0",
+      "private": true,
+      "engines": {
+        "node": ">=20.11.1",
+        "pnpm": ">=9.0.0"
+      },
+      "scripts": {
+        "contracts:validate": "ajv -s execution_packet.schema.json -d 'examples/*.json' --spec=draft2020 && ajv -s story_pack.schema.json -d 'examples/*.json' --spec=draft2020"
+      },
+      "devDependencies": {
+        "ajv-cli": "^5.0.0"
+      }
+    }
